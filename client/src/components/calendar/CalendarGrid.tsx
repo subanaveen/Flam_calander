@@ -12,7 +12,7 @@ import {
 } from "date-fns";
 import EventCard from "./EventCard";
 import { cn } from "@/lib/utils";
-import { getEventsForDay, filterEvents } from "@/lib/calendar-utils";
+import { getEventsForDay, filterEvents, hasConflictsOnDay, getDayEventDensity } from "@/lib/calendar-utils";
 import type { Event } from "@shared/schema";
 import type { EventCategory } from "@/types/calendar";
 
@@ -93,21 +93,42 @@ export default function CalendarGrid({
           const dayEvents = getEventsForDay(filteredEvents, day);
           const isCurrentMonth = isSameMonth(day, currentDate);
           const isCurrentDay = isToday(day);
+          const hasConflicts = hasConflictsOnDay(filteredEvents, day);
+          const density = getDayEventDensity(filteredEvents, day);
+          
+          // Dynamic background based on event density
+          const getDensityBackground = () => {
+            if (!isCurrentMonth) return "bg-gray-50/40";
+            if (isCurrentDay) return "bg-gradient-to-br from-blue-50 to-indigo-50";
+            
+            switch (density) {
+              case 'high': return "bg-gradient-to-br from-orange-50 to-red-50";
+              case 'medium': return "bg-gradient-to-br from-yellow-50 to-orange-50";
+              default: return "bg-white";
+            }
+          };
           
           return (
             <div
               key={day.toISOString()}
               className={cn(
-                "aspect-square p-3 border-r border-b border-gray-100 last:border-r-0 cursor-pointer transition-all duration-200 hover:shadow-md",
+                "aspect-square p-3 border-r border-b border-gray-100 last:border-r-0 cursor-pointer transition-all duration-200 hover:shadow-md relative",
+                getDensityBackground(),
                 isCurrentMonth
-                  ? "hover:bg-blue-50/30 bg-white"
-                  : "bg-gray-50/40 hover:bg-gray-50/60 text-gray-400",
-                isCurrentDay && "bg-gradient-to-br from-blue-50 to-indigo-50 hover:from-blue-100 hover:to-indigo-100"
+                  ? "hover:bg-blue-50/30"
+                  : "hover:bg-gray-50/60 text-gray-400",
+                isCurrentDay && "hover:from-blue-100 hover:to-indigo-100"
               )}
               onClick={() => onDayClick(day)}
               onDragOver={handleDragOver}
               onDrop={(e) => handleDrop(e, day)}
             >
+              {/* Conflict indicator */}
+              {hasConflicts && (
+                <div className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full shadow-sm animate-pulse" 
+                     title="Schedule conflicts detected" />
+              )}
+              
               <div className={cn(
                 "text-sm font-semibold mb-2 flex items-center justify-between",
                 isCurrentMonth ? "text-gray-900" : "text-gray-400",
@@ -119,9 +140,11 @@ export default function CalendarGrid({
                 )}>
                   {format(day, "d")}
                 </span>
-                {isCurrentDay && !isCurrentDay && (
-                  <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-medium">
-                    Today
+                
+                {/* Event count badge for high density days */}
+                {density === 'high' && dayEvents.length > 3 && (
+                  <span className="text-xs bg-orange-200 text-orange-800 px-1.5 py-0.5 rounded-full font-medium">
+                    {dayEvents.length}
                   </span>
                 )}
               </div>

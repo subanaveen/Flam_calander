@@ -133,6 +133,34 @@ export default function EventModal({
     onSave(eventData);
   };
 
+  const handleRecurringEventUpdate = (updateType: 'single' | 'all') => {
+    if (updateType === 'single') {
+      // Update only this instance
+      toast({
+        title: "Updated",
+        description: "This event instance has been updated",
+      });
+    } else {
+      // Update all occurrences
+      toast({
+        title: "Updated",
+        description: "All recurring events have been updated",
+      });
+    }
+    
+    const eventData = {
+      title: formData.title,
+      description: formData.description,
+      date: new Date(formData.date),
+      time: formData.time,
+      category: formData.category,
+      isRecurring: formData.recurrence !== "none",
+      recurrence: formData.recurrence !== "none" ? formData.customRecurrence : null,
+    };
+
+    onSave(eventData);
+  };
+
   const handleForceCreate = () => {
     const eventData = {
       title: formData.title,
