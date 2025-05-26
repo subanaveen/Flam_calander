@@ -1,0 +1,126 @@
+✅ 1. Functionality Completeness
+🔍 Review:
+
+ Can users create, edit, and delete events easily?
+
+ Do recurring events render correctly across days?
+
+ Can events be dragged and dropped across days?
+
+ Are recurrence rules applied correctly on edit?
+
+ Are event conflicts detected and handled?
+
+🧠 Pro Tips:
+
+Implement a "break this instance only" vs "update all recurring" option for recurring events.
+
+Use rrule.js or custom logic to support advanced patterns (e.g., "every 2nd Monday").
+
+Add tooltips on hover showing event info (especially for dense days).
+
+🎨 2. UX / UI Polish
+🔍 Review:
+
+ Is the event form intuitive and responsive?
+
+ Do modals/drawers animate in and out smoothly?
+
+ Are event cards visually distinct (colors, tags, icons)?
+
+ Is the current day highlighted clearly?
+
+ Does the calendar adapt to mobile/tablet screens?
+
+🧠 Pro Tips:
+
+Use Framer Motion for smooth UI transitions (modals, drag effects).
+
+Add snackbars/toasts (e.g., “Event created!”) with Undo support.
+
+Use sticky headers and hover/click interactions for delight.
+
+Add a dark mode toggle with persisted theme using Tailwind.
+
+🧠 3. State & Recurrence Logic
+🔍 Review:
+
+ Are you storing recurrence rules, not just expanded events?
+
+ Can events be uniquely identified (e.g., recurring event ID + instance ID)?
+
+ Are state updates atomic and undoable?
+
+🧠 Pro Tips:
+
+Structure your recurrence logic like:
+
+ts
+Copy
+Edit
+{
+  id: 'event-123',
+  title: 'Yoga',
+  recurrenceRule: 'FREQ=WEEKLY;BYDAY=MO,WE',
+  exceptions: ['2024-07-03'], // dates excluded
+}
+Enable "delete only this instance" vs "delete series" behavior.
+
+💾 4. Data Persistence
+🔍 Review:
+
+ Are events persisted using IndexedDB or localStorage?
+
+ Does persistence survive refresh and browser reopen?
+
+ Is data structured well for complex queries (e.g., recurring filters)?
+
+🧠 Pro Tips:
+
+Use Dexie.js to simplify IndexedDB logic.
+
+Save timestamps instead of Date objects to avoid timezone bugs.
+
+Add versioning in IndexedDB to support future migrations.
+
+🧲 5. Drag-and-Drop Polish
+🔍 Review:
+
+ Can users drag across months/weeks seamlessly?
+
+ Are conflicts detected on drag-drop?
+
+ Does the UI visually respond to drag targets?
+
+🧠 Pro Tips:
+
+Add snap-to-cell and visual placeholders for drop locations.
+
+On drop, confirm if the event is recurring: "Update only this instance or all?"
+
+⚡ 6. Performance & Optimization
+🔍 Review:
+
+ Are large numbers of events handled without slowdown?
+
+ Are you avoiding unnecessary re-renders?
+
+🧠 Pro Tips:
+
+Use React.memo or useMemo for static grids.
+
+Virtualize the event list or day column rendering if needed.
+
+Avoid re-parsing recurrence rules on every render; memoize them.
+
+🔍 7. Advanced Features (Optional but World-Class)
+Feature	Description
+Search & Filters	By title, date range, or category
+Timezone Support	Optional but useful for global use
+Google Calendar Sync	Bonus: OAuth2 integration & bi-directional sync
+Keyboard Navigation	Ctrl + Left/Right to move months
+iCal Export	Allow download of .ics file
+Undo/Redo	With a useUndo() hook or Zustand dev tools
+PWA Support	Make it installable on phones
+Accessibility (a11y)	ARIA labels, tab index, screen reader support
+
