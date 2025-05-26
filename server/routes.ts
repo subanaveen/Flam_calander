@@ -53,16 +53,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Create new event
   app.post("/api/events", async (req, res) => {
     try {
-      const validatedData = insertEventSchema.parse(req.body);
-      const event = await storage.createEvent(validatedData);
+      // Simple validation and data transformation
+      const eventData = {
+        title: req.body.title,
+        description: req.body.description || "",
+        date: new Date(req.body.date),
+        time: req.body.time || "",
+        category: req.body.category || "work",
+        recurrence: req.body.recurrence || null,
+        isRecurring: req.body.isRecurring || false,
+        originalEventId: req.body.originalEventId || undefined,
+        exceptionDates: req.body.exceptionDates || [],
+      };
+      
+      const event = await storage.createEvent(eventData);
       res.status(201).json(event);
     } catch (error) {
-      if (error instanceof z.ZodError) {
-        return res.status(400).json({ 
-          message: "Invalid event data",
-          errors: error.errors 
-        });
-      }
+      console.error("Error creating event:", error);
       res.status(500).json({ message: "Failed to create event" });
     }
   });
@@ -71,9 +78,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.patch("/api/events/:id", async (req, res) => {
     try {
       const id = parseInt(req.params.id);
-      const validatedData = insertEventSchema.partial().parse(req.body);
       
-      const updatedEvent = await storage.updateEvent(id, validatedData);
+      // Simple validation and data transformation for updates
+      const updateData: any = {};
+      if (req.body.title) updateData.title = req.body.title;
+      if (req.body.description !== undefined) updateData.description = req.body.description;
+      if (req.body.date) updateData.date = new Date(req.body.date);
+      if (req.body.time !== undefined) updateData.time = req.body.time;
+      if (req.body.category) updateData.category = req.body.category;
+      if (req.body.recurrence !== undefined) updateData.recurrence = req.body.recurrence;
+      if (req.body.isRecurring !== undefined) updateData.isRecurring = req.body.isRecurring;
+      if (req.body.originalEventId !== undefined) updateData.originalEventId = req.body.originalEventId;
+      if (req.body.exceptionDates !== undefined) updateData.exceptionDates = req.body.exceptionDates;
+      
+      const updatedEvent = await storage.updateEvent(id, updateData);
       
       if (!updatedEvent) {
         return res.status(404).json({ message: "Event not found" });
@@ -81,12 +99,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       res.json(updatedEvent);
     } catch (error) {
-      if (error instanceof z.ZodError) {
-        return res.status(400).json({ 
-          message: "Invalid event data",
-          errors: error.errors 
-        });
-      }
+      console.error("Error updating event:", error);
       res.status(500).json({ message: "Failed to update event" });
     }
   });

@@ -20,7 +20,7 @@ export const events = pgTable("events", {
 export const insertEventSchema = z.object({
   title: z.string(),
   description: z.string().optional(),
-  date: z.date().or(z.string().transform(str => new Date(str))),
+  date: z.any().transform(val => new Date(val)),
   time: z.string().optional(),
   category: z.string().default("work"),
   recurrence: z.any().optional(),
