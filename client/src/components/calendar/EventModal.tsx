@@ -350,15 +350,39 @@ export default function EventModal({
             
             {/* Delete Button */}
             {onDelete && (
-              <div className="pt-2 border-t">
-                <Button 
-                  type="button" 
-                  variant="destructive" 
-                  onClick={onDelete}
-                  className="w-full"
-                >
-                  Delete Event
-                </Button>
+              <div className="pt-2 border-t space-y-2">
+                {event?.isRecurring ? (
+                  <>
+                    <Button 
+                      type="button" 
+                      variant="destructive" 
+                      onClick={onDelete}
+                      className="w-full"
+                    >
+                      Delete This Event Only
+                    </Button>
+                    <Button 
+                      type="button" 
+                      variant="outline" 
+                      onClick={() => {
+                        // TODO: Implement delete all occurrences
+                        onDelete();
+                      }}
+                      className="w-full border-red-200 text-red-600 hover:bg-red-50"
+                    >
+                      Delete All Occurrences
+                    </Button>
+                  </>
+                ) : (
+                  <Button 
+                    type="button" 
+                    variant="destructive" 
+                    onClick={onDelete}
+                    className="w-full"
+                  >
+                    Delete Event
+                  </Button>
+                )}
               </div>
             )}
           </form>
