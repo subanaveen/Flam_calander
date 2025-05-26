@@ -24,7 +24,7 @@ export class MemStorage implements IStorage {
   private seedData() {
     // Add some initial events for demonstration
     const now = new Date();
-    const sampleEvents: InsertEvent[] = [
+    const sampleEvents = [
       {
         title: "Team Meeting",
         description: "Weekly team sync",
@@ -37,7 +37,6 @@ export class MemStorage implements IStorage {
           daysOfWeek: [1] // Monday
         },
         isRecurring: true,
-        originalEventId: null,
         exceptionDates: []
       },
       {
@@ -52,7 +51,6 @@ export class MemStorage implements IStorage {
           daysOfWeek: [2, 4] // Tuesday, Thursday
         },
         isRecurring: true,
-        originalEventId: null,
         exceptionDates: []
       },
       {
@@ -61,15 +59,13 @@ export class MemStorage implements IStorage {
         date: new Date(now.getFullYear(), now.getMonth(), 7),
         time: "19:00",
         category: "social",
-        recurrence: null,
         isRecurring: false,
-        originalEventId: null,
         exceptionDates: []
       }
     ];
 
     for (const event of sampleEvents) {
-      this.createEvent(event);
+      this.createEvent(event as any);
     }
   }
 
@@ -93,8 +89,16 @@ export class MemStorage implements IStorage {
     const id = this.currentId++;
     const now = new Date();
     const event: Event = {
-      ...insertEvent,
       id,
+      title: insertEvent.title,
+      description: insertEvent.description || null,
+      date: insertEvent.date,
+      time: insertEvent.time || null,
+      category: insertEvent.category || "work",
+      recurrence: insertEvent.recurrence || null,
+      isRecurring: insertEvent.isRecurring || false,
+      originalEventId: insertEvent.originalEventId || null,
+      exceptionDates: insertEvent.exceptionDates || [],
       createdAt: now,
       updatedAt: now,
     };

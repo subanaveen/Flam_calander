@@ -17,10 +17,16 @@ export const events = pgTable("events", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
-export const insertEventSchema = createInsertSchema(events).omit({
-  id: true,
-  createdAt: true,
-  updatedAt: true,
+export const insertEventSchema = z.object({
+  title: z.string(),
+  description: z.string().optional(),
+  date: z.date().or(z.string().transform(str => new Date(str))),
+  time: z.string().optional(),
+  category: z.string().default("work"),
+  recurrence: z.any().optional(),
+  isRecurring: z.boolean().optional().default(false),
+  originalEventId: z.number().optional(),
+  exceptionDates: z.array(z.string()).optional().default([]),
 });
 
 export type InsertEvent = z.infer<typeof insertEventSchema>;
