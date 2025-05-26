@@ -10,39 +10,33 @@ interface EventCardProps {
 
 const categoryStyles = {
   work: {
-    bg: "bg-blue-100 hover:bg-blue-200",
-    border: "border-l-blue-500",
-    text: "text-blue-800",
+    bg: "bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700",
+    text: "text-white",
     icon: Briefcase,
   },
   personal: {
-    bg: "bg-green-100 hover:bg-green-200", 
-    border: "border-l-green-500",
-    text: "text-green-800",
+    bg: "bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700", 
+    text: "text-white",
     icon: Users,
   },
   health: {
-    bg: "bg-yellow-100 hover:bg-yellow-200",
-    border: "border-l-yellow-500", 
-    text: "text-yellow-800",
+    bg: "bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600",
+    text: "text-white",
     icon: Dumbbell,
   },
   social: {
-    bg: "bg-purple-100 hover:bg-purple-200",
-    border: "border-l-purple-500",
-    text: "text-purple-800", 
+    bg: "bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700",
+    text: "text-white", 
     icon: Users,
   },
   travel: {
-    bg: "bg-orange-100 hover:bg-orange-200",
-    border: "border-l-orange-500",
-    text: "text-orange-800",
+    bg: "bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600",
+    text: "text-white",
     icon: Plane,
   },
   holiday: {
-    bg: "bg-red-100 hover:bg-red-200",
-    border: "border-l-red-500",
-    text: "text-red-800",
+    bg: "bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600",
+    text: "text-white",
     icon: Star,
   },
 };
@@ -64,24 +58,23 @@ export default function EventCard({ event, onClick }: EventCardProps) {
   return (
     <div
       className={cn(
-        "p-1 rounded text-xs cursor-move border-l-4 transition-colors duration-150",
+        "p-2 rounded-lg text-xs cursor-move transition-all duration-200 shadow-sm hover:shadow-md transform hover:scale-105",
         style.bg,
-        style.border,
         style.text
       )}
       draggable
       onDragStart={handleDragStart}
       onClick={handleClick}
     >
-      <div className="flex items-center gap-1">
-        <Icon className="h-3 w-3 flex-shrink-0" />
-        <span className="truncate font-medium">{event.title}</span>
+      <div className="flex items-center gap-1.5 mb-1">
+        <Icon className="h-3 w-3 flex-shrink-0 opacity-90" />
+        <span className="truncate font-semibold">{event.title}</span>
         {event.isRecurring && (
-          <Repeat className="h-2 w-2 flex-shrink-0 opacity-70" />
+          <Repeat className="h-2.5 w-2.5 flex-shrink-0 opacity-80" />
         )}
       </div>
       {event.time && (
-        <div className="text-xs opacity-75 mt-0.5">
+        <div className="text-xs opacity-90 font-medium">
           {event.time}
         </div>
       )}

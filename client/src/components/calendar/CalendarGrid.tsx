@@ -74,13 +74,13 @@ export default function CalendarGrid({
   }
 
   return (
-    <div className="bg-white rounded-lg border shadow-sm overflow-hidden">
+    <div className="bg-white/90 backdrop-blur-sm rounded-3xl border-0 shadow-xl overflow-hidden">
       {/* Calendar Header (Days of Week) */}
-      <div className="grid grid-cols-7 bg-gray-50 border-b">
+      <div className="grid grid-cols-7 bg-gradient-to-r from-slate-50 to-blue-50/50 border-b border-gray-100">
         {DAYS_OF_WEEK.map((day) => (
           <div
             key={day}
-            className="p-3 text-center text-sm font-medium text-secondary border-r last:border-r-0"
+            className="p-4 text-center text-sm font-semibold text-gray-700 border-r border-gray-100 last:border-r-0"
           >
             {day}
           </div>
@@ -98,24 +98,29 @@ export default function CalendarGrid({
             <div
               key={day.toISOString()}
               className={cn(
-                "aspect-square p-2 border-r border-b last:border-r-0 cursor-pointer transition-colors duration-150",
+                "aspect-square p-3 border-r border-b border-gray-100 last:border-r-0 cursor-pointer transition-all duration-200 hover:shadow-md",
                 isCurrentMonth
-                  ? "hover:bg-gray-50"
-                  : "bg-gray-50/50 hover:bg-gray-100",
-                isCurrentDay && "bg-blue-50 hover:bg-blue-100"
+                  ? "hover:bg-blue-50/30 bg-white"
+                  : "bg-gray-50/40 hover:bg-gray-50/60 text-gray-400",
+                isCurrentDay && "bg-gradient-to-br from-blue-50 to-indigo-50 hover:from-blue-100 hover:to-indigo-100"
               )}
               onClick={() => onDayClick(day)}
               onDragOver={handleDragOver}
               onDrop={(e) => handleDrop(e, day)}
             >
               <div className={cn(
-                "text-sm font-medium mb-1 flex items-center",
+                "text-sm font-semibold mb-2 flex items-center justify-between",
                 isCurrentMonth ? "text-gray-900" : "text-gray-400",
-                isCurrentDay && "text-primary font-bold"
+                isCurrentDay && "text-blue-700"
               )}>
-                {format(day, "d")}
-                {isCurrentDay && (
-                  <span className="ml-1 text-xs bg-primary text-white px-1 rounded">
+                <span className={cn(
+                  "flex items-center justify-center w-6 h-6 rounded-full",
+                  isCurrentDay && "bg-blue-600 text-white text-xs font-bold"
+                )}>
+                  {format(day, "d")}
+                </span>
+                {isCurrentDay && !isCurrentDay && (
+                  <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-medium">
                     Today
                   </span>
                 )}
