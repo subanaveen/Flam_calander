@@ -60,7 +60,7 @@ export default function Calendar() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20">
+    <div className="min-h-screen bg-white">
       <div className="max-w-7xl mx-auto p-4 lg:p-8">
         <CalendarHeader
           currentDate={currentDate}

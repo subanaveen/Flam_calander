@@ -1,211 +1,243 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
 :root {
-  --background: 250 251 252; /* #FAFBFC */
-  --foreground: 15 23 42; /* #0F172A */
-  --muted: 248 250 252; /* #F8FAFC */
-  --muted-foreground: 100 116 139; /* #64748B */
-  --popover: 255 255 255; /* #FFFFFF */
-  --popover-foreground: 15 23 42; /* #0F172A */
-  --card: 255 255 255; /* #FFFFFF */
-  --card-foreground: 15 23 42; /* #0F172A */
-  --border: 241 245 249; /* #F1F5F9 */
-  --input: 248 250 252; /* #F8FAFC */
-  --primary: 59 130 246; /* #3B82F6 */
-  --primary-foreground: 255 255 255; /* #FFFFFF */
-  --secondary: 248 250 252; /* #F8FAFC */
-  --secondary-foreground: 71 85 105; /* #475569 */
-  --accent: 16 185 129; /* #10B981 */
-  --accent-foreground: 255 255 255; /* #FFFFFF */
-  --destructive: 239 68 68; /* #EF4444 */
-  --destructive-foreground: 255 255 255; /* #FFFFFF */
-  --ring: 59 130 246; /* #3B82F6 */
-  --radius: 0.75rem;
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --background: 245 245 247;
+    /* #F5F5F7 - Soft off-white for a clean, airy feel */
+    --foreground: 17 24 39;
+    /* #111827 - Deep gray-blue for high contrast text */
+    --muted: 243 244 246;
+    /* #F3F4F6 - Subtle gray for backgrounds */
+    --muted-foreground: 107 114 128;
+    /* #6B7280 - Neutral gray for secondary text */
+    --popover: 255 255 255;
+    /* #FFFFFF - Pure white for popovers, unchanged */
+    --popover-foreground: 17 24 39;
+    /* #111827 - Matches foreground */
+    --card: 255 255 255;
+    /* #FFFFFF - Pure white for cards, unchanged */
+    --card-foreground: 17 24 39;
+    /* #111827 - Matches foreground */
+    --border: 229 231 235;
+    /* #E5E7EB - Light gray for subtle borders */
+    --input: 243 244 246;
+    /* #F3F4F6 - Matches muted for consistent inputs */
+    --primary: 79 70 229;
+    /* #4F46E5 - Vibrant indigo for primary actions */
+    --primary-foreground: 255 255 255;
+    /* #FFFFFF - White for contrast */
+    --secondary: 229 231 235;
+    /* #E5E7EB - Light gray for secondary elements */
+    --secondary-foreground: 55 65 81;
+    /* #374151 - Darker gray for readability */
+    --accent: 34 197 94;
+    /* #22C55E - Fresh green for highlights */
+    --accent-foreground: 255 255 255;
+    /* #FFFFFF - White for contrast */
+    --destructive: 239 68 68;
+    /* #EF4444 - Retain red for destructive actions */
+    --destructive-foreground: 255 255 255;
+    /* #FFFFFF - White, unchanged */
+    --ring: 79 70 229;
+    /* #4F46E5 - Matches primary for focus rings */
+    --radius: 0.75rem;
+    /* Unchanged */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    /* Unchanged */
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    /* Unchanged */
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    /* Unchanged */
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    /* Unchanged */
 }
 
 .dark {
-  --background: 15 23 42; /* #0F172A */
-  --foreground: 248 250 252; /* #F8FAFC */
-  --muted: 30 41 59; /* #1E293B */
-  --muted-foreground: 148 163 184; /* #94A3B8 */
-  --popover: 15 23 42; /* #0F172A */
-  --popover-foreground: 248 250 252; /* #F8FAFC */
-  --card: 15 23 42; /* #0F172A */
-  --card-foreground: 248 250 252; /* #F8FAFC */
-  --border: 30 41 59; /* #1E293B */
-  --input: 30 41 59; /* #1E293B */
-  --primary: 37 99 235; /* #2563EB */
-  --primary-foreground: 248 250 252; /* #F8FAFC */
-  --secondary: 30 41 59; /* #1E293B */
-  --secondary-foreground: 248 250 252; /* #F8FAFC */
-  --accent: 5 150 105; /* #059669 */
-  --accent-foreground: 255 255 255; /* #FFFFFF */
-  --destructive: 220 38 38; /* #DC2626 */
-  --destructive-foreground: 254 242 242; /* #FEF2F2 */
-  --ring: 37 99 235; /* #2563EB */
+    --background: 15 23 42;
+    /* #0F172A */
+    --foreground: 248 250 252;
+    /* #F8FAFC */
+    --muted: 30 41 59;
+    /* #1E293B */
+    --muted-foreground: 148 163 184;
+    /* #94A3B8 */
+    --popover: 15 23 42;
+    /* #0F172A */
+    --popover-foreground: 248 250 252;
+    /* #F8FAFC */
+    --card: 15 23 42;
+    /* #0F172A */
+    --card-foreground: 248 250 252;
+    /* #F8FAFC */
+    --border: 30 41 59;
+    /* #1E293B */
+    --input: 30 41 59;
+    /* #1E293B */
+    --primary: 37 99 235;
+    /* #2563EB */
+    --primary-foreground: 248 250 252;
+    /* #F8FAFC */
+    --secondary: 30 41 59;
+    /* #1E293B */
+    --secondary-foreground: 248 250 252;
+    /* #F8FAFC */
+    --accent: 5 150 105;
+    /* #059669 */
+    --accent-foreground: 255 255 255;
+    /* #FFFFFF */
+    --destructive: 220 38 38;
+    /* #DC2626 */
+    --destructive-foreground: 254 242 242;
+    /* #FEF2F2 */
+    --ring: 37 99 235;
+    /* #2563EB */
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  }
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground font-sans antialiased;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 }
 
 @layer utilities {
-  .font-inter {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  }
-
-  .text-secondary {
-    color: hsl(var(--muted-foreground));
-  }
-
-  .bg-neutral {
-    background-color: hsl(var(--background));
-  }
-
-  /* Custom scrollbar styles */
-  .scrollbar-thin {
-    scrollbar-width: thin;
-  }
-
-  .scrollbar-thin::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  .scrollbar-thin::-webkit-scrollbar-track {
-    background: hsl(var(--muted));
-  }
-
-  .scrollbar-thin::-webkit-scrollbar-thumb {
-    background: hsl(var(--muted-foreground));
-    border-radius: 2px;
-  }
-
-  /* Animation classes */
-  .animate-fade-in {
-    animation: fadeIn 0.2s ease-out;
-  }
-
-  .animate-slide-up {
-    animation: slideUp 0.3s ease-out;
-  }
-
-  .animate-bounce-gentle {
-    animation: bounceGentle 0.4s ease-out;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
+    .font-inter {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
-    to {
-      opacity: 1;
+    .text-secondary {
+        color: hsl(var(--muted-foreground));
     }
-  }
-
-  @keyframes slideUp {
-    from {
-      transform: translateY(20px);
-      opacity: 0;
+    .bg-neutral {
+        background-color: hsl(var(--background));
     }
-    to {
-      transform: translateY(0);
-      opacity: 1;
+    /* Custom scrollbar styles */
+    .scrollbar-thin {
+        scrollbar-width: thin;
     }
-  }
-
-  @keyframes bounceGentle {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
+    .scrollbar-thin::-webkit-scrollbar {
+        width: 4px;
     }
-    40% {
-      transform: translateY(-4px);
+    .scrollbar-thin::-webkit-scrollbar-track {
+        background: hsl(var(--muted));
     }
-    60% {
-      transform: translateY(-2px);
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+        background: hsl(var(--muted-foreground));
+        border-radius: 2px;
     }
-  }
-
-  /* Calendar specific styles */
-  .calendar-day {
-    @apply aspect-square p-2 border-r border-b last:border-r-0 cursor-pointer transition-colors duration-150;
-  }
-
-  .calendar-day:hover {
-    @apply bg-gray-50 dark:bg-gray-800;
-  }
-
-  .calendar-day.other-month {
-    @apply bg-gray-50/50 dark:bg-gray-900/50;
-  }
-
-  .calendar-day.today {
-    @apply bg-blue-50 dark:bg-blue-900/20;
-  }
-
-  .calendar-day.today:hover {
-    @apply bg-blue-100 dark:bg-blue-900/40;
-  }
-
-  .event-card {
-    @apply p-1 rounded text-xs cursor-move border-l-4 transition-colors duration-150;
-  }
-
-  .event-card:hover {
-    @apply scale-105 shadow-sm;
-  }
-
-  /* Drag and drop visual feedback */
-  .drag-over {
-    @apply bg-blue-100 dark:bg-blue-900/30 border-blue-300 dark:border-blue-600;
-  }
-
-  .dragging {
-    @apply opacity-50 scale-95;
-  }
+    /* Animation classes */
+    .animate-fade-in {
+        animation: fadeIn 0.2s ease-out;
+    }
+    .animate-slide-up {
+        animation: slideUp 0.3s ease-out;
+    }
+    .animate-bounce-gentle {
+        animation: bounceGentle 0.4s ease-out;
+    }
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    @keyframes slideUp {
+        from {
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    @keyframes bounceGentle {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+            transform: translateY(0);
+        }
+        40% {
+            transform: translateY(-4px);
+        }
+        60% {
+            transform: translateY(-2px);
+        }
+    }
+    /* Calendar specific styles */
+    .calendar-day {
+        @apply aspect-square p-2 border-r border-b last: border-r-0 cursor-pointer transition-colors duration-150;
+    }
+    .calendar-day:hover {
+        @apply bg-gray-50 dark: bg-gray-800;
+    }
+    .calendar-day.other-month {
+        @apply bg-gray-50/50 dark: bg-gray-900/50;
+    }
+    .calendar-day.today {
+        @apply bg-blue-50 dark: bg-blue-900/20;
+    }
+    .calendar-day.today:hover {
+        @apply bg-blue-100 dark: bg-blue-900/40;
+    }
+    .event-card {
+        @apply p-1 rounded text-xs cursor-move border-l-4 transition-colors duration-150;
+    }
+    .event-card:hover {
+        @apply scale-105 shadow-sm;
+    }
+    /* Drag and drop visual feedback */
+    .drag-over {
+        @apply bg-blue-100 dark: bg-blue-900/30 border-blue-300 dark: border-blue-600;
+    }
+    .dragging {
+        @apply opacity-50 scale-95;
+    }
 }
 
+
 /* Loading spinner */
+
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .animate-spin {
-  animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
 }
+
 
 /* Focus styles for accessibility */
+
 *:focus-visible {
-  @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
 }
 
-/* Mobile-specific styles */
-@media (max-width: 640px) {
-  .calendar-day {
-    @apply p-1;
-  }
 
-  .event-card {
-    @apply text-xs p-0.5;
-  }
+/* Mobile-specific styles */
+
+@media (max-width: 640px) {
+    .calendar-day {
+        @apply p-1;
+    }
+    .event-card {
+        @apply text-xs p-0.5;
+    }
 }

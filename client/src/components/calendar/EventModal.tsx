@@ -34,7 +34,7 @@ const RECURRENCE_OPTIONS = [
 const CATEGORY_OPTIONS = [
   { value: "work", label: "🔵 Work", color: "blue" },
   { value: "personal", label: "🟢 Personal", color: "green" },
-  { value: "health", label: "🟡 Health", color: "yellow" },
+  { value: "health", label: "🟢 Health", color: "teal" },
   { value: "social", label: "🟣 Social", color: "purple" },
   { value: "travel", label: "🟠 Travel", color: "orange" },
   { value: "holiday", label: "🔴 Holiday", color: "red" },
@@ -218,7 +218,7 @@ export default function EventModal({
             <DialogTitle>{event ? "Edit Event" : "Add New Event"}</DialogTitle>
           </DialogHeader>
           
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-lg">
             {/* Event Title */}
             <div>
               <Label htmlFor="title">Event Title</Label>

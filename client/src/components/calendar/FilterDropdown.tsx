@@ -15,7 +15,7 @@ interface FilterDropdownProps {
 const FILTER_OPTIONS = [
   { value: "work", label: "Work Events", color: "bg-blue-500" },
   { value: "personal", label: "Personal Events", color: "bg-green-500" },
-  { value: "health", label: "Health & Fitness", color: "bg-yellow-500" },
+  { value: "health", label: "Health & Fitness", color: "bg-teal-500" },
   { value: "social", label: "Social Events", color: "bg-purple-500" },
   { value: "travel", label: "Travel", color: "bg-orange-500" },
   { value: "holiday", label: "Holidays", color: "bg-red-500" },

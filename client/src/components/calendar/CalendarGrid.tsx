@@ -103,7 +103,7 @@ export default function CalendarGrid({
             
             switch (density) {
               case 'high': return "bg-gradient-to-br from-orange-50 to-red-50";
-              case 'medium': return "bg-gradient-to-br from-yellow-50 to-orange-50";
+              case 'medium': return "bg-gradient-to-br from-cyan-50 to-blue-50";
               default: return "bg-white";
             }
           };
